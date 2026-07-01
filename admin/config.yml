@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: TeguhEP/hebammenpraxis-digital
+  branch: main
+  base_url: https://hebammenpraxis-digital.de
+  auth_endpoint: api/auth
+
+media_folder: "admin/uploads"
+public_folder: "/admin/uploads"
+
+collections:
+  - name: "blog_de"
+    label: "Blog (Deutsch)"
+    folder: "src/de/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Beschreibung", name: "description", widget: "string" }
+      - { label: "Kategorie", name: "category", widget: "select", options: ["Kassenleistung", "IGeL", "Schwangerschaft", "Geburt", "Wochenbett", "Ratgeber"] }
+      - { label: "Autor", name: "author", widget: "string", default: "Raisa Shofia, B.Sc." }
+      - { label: "Datum", name: "date", widget: "datetime" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk" }
+      - { label: "Tags", name: "tags", widget: "hidden", default: "blog_de" }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
