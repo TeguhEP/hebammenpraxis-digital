@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hebammenpraxis-Digital</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #F9F6F2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    p { color: #9B9189; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+  <p>Wird weitergeleitet...</p>
+
+  <script>
+    // Baca bahasa browser, ambil 2 karakter pertama
+    // Contoh: "de-DE" → "de", "id-ID" → "id"
+    var lang = navigator.language.substring(0, 2).toLowerCase();
+
+    // Tentukan tujuan redirect
+    var tujuan = {
+      'de': '/de/',
+      'id': '/id/',
+      'en': '/en/'
+    };
+
+    // Redirect — gunakan tujuan yang sesuai, atau /de/ kalau tidak ada
+    window.location.replace(tujuan[lang] || '/de/');
+  </script>
+
+</body>
+</html>
