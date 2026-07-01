@@ -1,41 +1,127 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hebammenpraxis-Digital</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hebammenpraxis-Digital — Demnächst verfügbar</title>
+  <meta name="description" content="Hebammenversorgung digital und persönlich — für Familien in Mannheim, Speyer, Heidelberg und Umgebung.">
+  <meta property="og:title" content="Hebammenpraxis-Digital">
+  <meta property="og:description" content="Demnächst verfügbar.">
+  <meta property="og:url" content="https://hebammenpraxis-digital.de/">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: sans-serif;
-      background: #F9F6F2;
+      font-family: 'Lato', sans-serif;
+      background-color: #F7F5F2;
+      color: #2C3E35;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
+      text-align: center;
+      padding: 2rem;
     }
-    p { color: #9B9189; font-size: 0.9rem; }
+
+    .container {
+      max-width: 560px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4A7C6F;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C17A5B;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: #2C3E35;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background-color: #4A7C6F;
+      margin: 0 auto 1.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #5A6B62;
+      margin-bottom: 2rem;
+    }
+
+    .contact {
+      font-size: 0.875rem;
+      color: #5A6B62;
+      line-height: 1.8;
+    }
+
+    .contact a {
+      color: #4A7C6F;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 3.5rem;
+      font-size: 0.75rem;
+      color: #9AA89F;
+      letter-spacing: 0.02em;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="logo">Hebammenpraxis-Digital</div>
 
-  <p>Wird weitergeleitet...</p>
+    <span class="badge">Demnächst verfügbar</span>
+    <h1>Wir sind bald für Sie da.</h1>
 
-  <script>
-    // Baca bahasa browser, ambil 2 karakter pertama
-    // Contoh: "de-DE" → "de", "id-ID" → "id"
-    var lang = navigator.language.substring(0, 2).toLowerCase();
+    <div class="divider"></div>
 
-    // Tentukan tujuan redirect
-    var tujuan = {
-      'de': '/de/',
-      'id': '/id/',
-      'en': '/en/'
-    };
+    <p>
+      Unsere Website befindet sich derzeit im Aufbau.<br />
+      Wir freuen uns darauf, Sie bald mit unseren Hebammenleistungen zu unterstützen.
+    </p>
 
-    // Redirect — gunakan tujuan yang sesuai, atau /de/ kalau tidak ada
-    window.location.replace(tujuan[lang] || '/de/');
-  </script>
+    <div class="contact">
+      Bei dringenden Fragen erreichen Sie uns unter:<br />
+      <a href="mailto:info@hebammenpraxis-digital.de">info@hebammenpraxis-digital.de</a>
+    </div>
 
+    <div class="footer">
+      Notfall: 112 &nbsp;&nbsp;|&nbsp;&nbsp; Ärztlicher Bereitschaftsdienst: 116 117
+    </div>
+  </div>
 </body>
 </html>
