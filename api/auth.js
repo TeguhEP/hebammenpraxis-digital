@@ -1,12 +1,12 @@
-const { OAuthApp } = require('@octokit/oauth-app');
-
-const app = new OAuthApp({
-  clientType: 'oauth-app',
-  clientId: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
-});
-
 module.exports = async function handler(req, res) {
+  const { OAuthApp } = await import('@octokit/oauth-app');
+
+  const app = new OAuthApp({
+    clientType: 'oauth-app',
+    clientId: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  });
+
   const { code } = req.query;
 
   if (!code) {
