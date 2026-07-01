@@ -1,43 +1,32 @@
+const { OAuthApp } = require('@octokit/oauth-app');
+
+const app = new OAuthApp({
+  clientType: 'oauth-app',
+  clientId: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+});
+
 module.exports = async function handler(req, res) {
   const { code } = req.query;
-  const clientId = process.env.GITHUB_CLIENT_ID;
-  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
-  const redirectUri = 'https://www.hebammenpraxis-digital.de/api/auth';
 
   if (!code) {
-    const params = new URLSearchParams({
-      client_id: clientId,
-      scope: 'repo',
-      redirect_uri: redirectUri,
-    });
-    return res.redirect(`https://github.com/login/oauth/authorize?${params}`);
+    const { url } = app.getWebFlowAuthorizationUrl({ scopes: ['repo'] });
+    return res.redirect(url);
   }
 
-  const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      code,
-      redirect_uri: redirectUri,
-    }),
-  });
-
-  const token = await tokenRes.json();
-
-  if (token.error) {
-    return res.status(400).send('OAuth error: ' + token.error + ' — ' + token.error_description);
+  try {
+    const { authentication } = await app.createToken({ code });
+    const msg = JSON.stringify({ token: authentication.token, provider: 'github' });
+    return res.send(`<!DOCTYPE html><html><body><script>
+      (function() {
+        function receive(e) {
+          window.opener.postMessage('authorization:github:success:' + '${msg}', e.origin);
+        }
+        window.addEventListener('message', receive, false);
+        window.opener.postMessage('authorizing:github', '*');
+      })();
+    <\/script></body></html>`);
+  } catch (err) {
+    return res.status(400).send('OAuth error: ' + err.message);
   }
-
-  const msg = JSON.stringify({ token: token.access_token, provider: 'github' });
-  return res.send(`<!DOCTYPE html><html><body><script>
-    (function() {
-      function receive(e) {
-        window.opener.postMessage('authorization:github:success:' + '${msg}', e.origin);
-      }
-      window.addEventListener('message', receive, false);
-      window.opener.postMessage('authorizing:github', '*');
-    })();
-  <\/script></body></html>`);
 };
