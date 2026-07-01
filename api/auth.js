@@ -2,11 +2,13 @@ module.exports = async function handler(req, res) {
   const { code } = req.query;
   const clientId = process.env.GITHUB_CLIENT_ID;
   const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+  const redirectUri = 'https://www.hebammenpraxis-digital.de/api/auth';
 
   if (!code) {
     const params = new URLSearchParams({
       client_id: clientId,
       scope: 'repo',
+      redirect_uri: redirectUri,
     });
     return res.redirect(`https://github.com/login/oauth/authorize?${params}`);
   }
@@ -14,13 +16,18 @@ module.exports = async function handler(req, res) {
   const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ client_id: clientId, client_secret: clientSecret, code }),
+    body: JSON.stringify({
+      client_id: clientId,
+      client_secret: clientSecret,
+      code,
+      redirect_uri: redirectUri,
+    }),
   });
 
   const token = await tokenRes.json();
 
   if (token.error) {
-    return res.status(400).send('OAuth error: ' + token.error_description);
+    return res.status(400).send('OAuth error: ' + token.error + ' — ' + token.error_description);
   }
 
   const msg = JSON.stringify({ token: token.access_token, provider: 'github' });
@@ -33,4 +40,4 @@ module.exports = async function handler(req, res) {
       window.opener.postMessage('authorizing:github', '*');
     })();
   <\/script></body></html>`);
-}
+};
