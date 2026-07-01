@@ -2,7 +2,7 @@ backend:
   name: github
   repo: TeguhEP/hebammenpraxis-digital
   branch: main
-  base_url: https://hebammenpraxis-digital.de
+  base_url: https://www.hebammenpraxis-digital.de
   auth_endpoint: api/auth
 
 media_folder: "admin/uploads"
