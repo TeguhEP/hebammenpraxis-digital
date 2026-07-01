@@ -15,6 +15,10 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    console.log('CLIENT_ID length:', (process.env.GITHUB_CLIENT_ID || '').length);
+    console.log('CLIENT_SECRET length:', (process.env.GITHUB_CLIENT_SECRET || '').length);
+    console.log('CLIENT_ID starts:', (process.env.GITHUB_CLIENT_ID || '').substring(0, 6));
+
     const { authentication } = await app.createToken({ code });
     const msg = JSON.stringify({ token: authentication.token, provider: 'github' });
     return res.send(`<!DOCTYPE html><html><body><script>
