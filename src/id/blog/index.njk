@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Hebammenpraxis-Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/id/" class="nav-logo">Hebammenpraxis<span>-Digital</span></a>
+        <ul class="nav-links">
+          <li><a href="/id/#layanan">Layanan</a></li>
+          <li><a href="/id/#kontak">Kontak</a></li>
+          <li><a href="/id/blog/">Blog</a></li>
+          <li class="lang-switcher">
+            <a href="/de/">DE</a>
+            <a href="/id/" class="active">ID</a>
+            <a href="/en/">EN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section style="padding: 4rem 0 2rem;">
+    <div class="container" style="max-width: 720px;">
+      <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent);">Pengetahuan & Panduan</span>
+      <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0.75rem 0 0.5rem; color: var(--color-primary);">Blog</h1>
+      <p style="color: var(--color-mid-gray);">Informasi seputar kehamilan, persalinan, dan masa nifas.</p>
+    </div>
+  </section>
+
+  <section style="padding: 2rem 0 4rem;">
+    <div class="container" style="max-width: 720px;">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        {%- for post in collections.blog_id | reverse -%}
+        <article style="border: 1px solid #EDE9E4; border-radius: 12px; padding: 1.5rem; background: white;">
+          <span style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent);">{{ post.data.category }}</span>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin: 0.5rem 0 0.75rem; line-height: 1.3;">
+            <a href="{{ post.url }}" style="color: var(--color-dark); text-decoration: none;">{{ post.data.title }}</a>
+          </h2>
+          <p style="color: var(--color-mid-gray); font-size: 0.9rem; margin-bottom: 1rem;">{{ post.data.description }}</p>
+          <a href="{{ post.url }}" style="color: var(--color-primary); font-weight: 700; font-size: 0.9rem; text-decoration: none;">Baca selengkapnya →</a>
+        </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Raisa Shofia, B.Sc. — Hak cipta dilindungi.</span>
+        <a href="/de/impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} — Hebammenpraxis-Digital</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/id/" class="nav-logo">Hebammenpraxis<span>-Digital</span></a>
+        <ul class="nav-links">
+          <li><a href="/id/#layanan">Layanan</a></li>
+          <li><a href="/id/#kontak">Kontak</a></li>
+          <li><a href="/id/blog/">Blog</a></li>
+          <li class="lang-switcher">
+            <a href="/de/">DE</a>
+            <a href="/id/" class="active">ID</a>
+            <a href="/en/">EN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width: 720px; padding: 4rem 1.5rem;">
+    <div style="margin-bottom: 2rem;">
+      <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent);">{{ category }}</span>
+      <h1 style="font-family: 'Playfair Display', serif; font-size: 2.25rem; line-height: 1.25; margin: 0.75rem 0 1rem; color: var(--color-primary);">{{ title }}</h1>
+      <p style="color: var(--color-mid-gray); font-size: 0.9rem;">{{ author }} · {{ date | dateDisplayId }}</p>
+      <hr style="border: none; border-top: 1px solid #EDE9E4; margin: 1.5rem 0;" />
+    </div>
+
+    <div class="blog-content">
+      {{ content | safe }}
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #EDE9E4;">
+      <a href="/id/blog/" style="color: var(--color-primary); font-weight: 700; text-decoration: none;">← Kembali ke Blog</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Raisa Shofia, B.Sc. — Hak cipta dilindungi.</span>
+        <a href="/de/impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

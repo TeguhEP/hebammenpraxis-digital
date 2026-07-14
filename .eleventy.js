@@ -18,9 +18,21 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("blog_en", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/en/blog/*.md");
   });
-  
+
   eleventyConfig.addFilter("dateDisplay", function(date) {
     return new Date(date).toLocaleDateString("de-DE", {
+      year: "numeric", month: "long", day: "numeric"
+    });
+  });
+
+  eleventyConfig.addFilter("dateDisplayId", function(date) {
+    return new Date(date).toLocaleDateString("id-ID", {
+      year: "numeric", month: "long", day: "numeric"
+    });
+  });
+
+  eleventyConfig.addFilter("dateDisplayEn", function(date) {
+    return new Date(date).toLocaleDateString("en-GB", {
       year: "numeric", month: "long", day: "numeric"
     });
   });
