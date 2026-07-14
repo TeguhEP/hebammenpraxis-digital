@@ -18,8 +18,8 @@
         <a href="/de/" class="nav-brand">Hebammenpraxis-Digital</a>
         <div class="nav-links">
           <a href="/de/#leistungen">Leistungen</a>
-          <a href="/de/blog/">Blog</a>
           <a href="/de/#kontakt">Kontakt</a>
+          <a href="/de/blog/">Blog</a>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div style="margin-bottom: 2rem;">
       <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent);">{{ category }}</span>
       <h1 style="font-family: 'Playfair Display', serif; font-size: 2.25rem; line-height: 1.25; margin: 0.75rem 0 1rem;">{{ title }}</h1>
-      <p style="color: var(--color-text-muted); font-size: 0.9rem;">{{ author }} · {{ date }}</p>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem;">{{ author }} · {{ date | dateDisplay }}</p>
       <hr style="border: none; border-top: 1px solid var(--color-border); margin: 1.5rem 0;" />
     </div>
 
@@ -44,7 +44,10 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2026 Hebammenpraxis-Digital · <a href="/de/impressum.html">Impressum</a></p>
+      <div class="footer-bottom">
+        <span>© 2026 Raisa Shofia, B.Sc. — Alle Rechte vorbehalten.</span>
+        <a href="/de/impressum.html">Impressum</a>
+      </div>
     </div>
   </footer>
 
