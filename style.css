@@ -76,6 +76,7 @@ p {
 .nav-logo {
   font-family: var(--font-heading);
   font-size: 1.2rem;
+  font-weight:700;
   color: var(--color-primary);
   text-decoration: none;
 }
