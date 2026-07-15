@@ -6,6 +6,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("id/index.html");
   eleventyConfig.addPassthroughCopy("en/index.html");
   eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy("src/assets");
 
   eleventyConfig.addCollection("blog_de", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/de/blog/*.md");
