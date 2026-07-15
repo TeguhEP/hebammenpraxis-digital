@@ -407,3 +407,5 @@ p {
   background-color: var(--color-primary);
   color: white;
 }
+
+a.badge { text-decoration: none; }
