@@ -7,6 +7,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("en/index.html");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("de/schwangerschaft.html");
+  eleventyConfig.addPassthroughCopy("de/wochenbett.html");
+  eleventyConfig.addPassthroughCopy("de/stillbegleitung.html");
+  eleventyConfig.addPassthroughCopy("id/kehamilan.html");
+  eleventyConfig.addPassthroughCopy("id/nifas.html");
+  eleventyConfig.addPassthroughCopy("id/menyusui.html");
 
   eleventyConfig.addCollection("blog_de", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/de/blog/*.md");
