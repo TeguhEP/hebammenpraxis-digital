@@ -13,6 +13,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("id/kehamilan.html");
   eleventyConfig.addPassthroughCopy("id/nifas.html");
   eleventyConfig.addPassthroughCopy("id/menyusui.html");
+  eleventyConfig.addPassthroughCopy("en/pregnancy.html");
+  eleventyConfig.addPassthroughCopy("en/postnatal.html");
+  eleventyConfig.addPassthroughCopy("en/breastfeeding.html");
+  eleventyConfig.addPassthroughCopy("src/assets/images");
+  eleventyConfig.addPassthroughCopy("src/assets");
 
   eleventyConfig.addCollection("blog_de", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/de/blog/*.md");
