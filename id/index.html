@@ -11,6 +11,47 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap">
   </head>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlGD7ulayD3M58Y4MJ0R6fmIs96rUXFu7rk7mhe84t8Jrhmgrp1QsxksRnKgpMXCYvrQ/exec';
+
+    function submitForm(e, lang) {
+      e.preventDefault();
+      var form = document.getElementById('form-' + lang);
+      var btn  = document.getElementById('btn-' + lang);
+
+      var data = {
+        lang:    lang,
+        name:    form.querySelector('[name="name"]').value,
+        email:   form.querySelector('[name="email"]').value,
+        phone:   form.querySelector('[name="phone"]').value,
+        message: form.querySelector('[name="message"]').value,
+        topic:   form.querySelector('[name="topic"]').value,
+      };
+
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function() {
+        form.style.display = 'none';
+        document.getElementById('kontakt-success-' + lang).style.display = 'block';
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = lang === 'de' ? 'Nachricht senden' : lang === 'id' ? 'Kirim Pesan' : 'Send Message';
+        alert(lang === 'de' ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' : 
+              lang === 'id' ? 'Terjadi kesalahan. Silakan coba lagi.' : 
+              'An error occurred. Please try again.');
+      });
+    }
+  </script>
+
   <body>
     
     <nav class="site-nav">
@@ -190,25 +231,58 @@
       </div>
     </section>
 
-    <section id="kontak" class="section-kontakt">
+    <section id="kontak" style="padding: 5rem 0; background: var(--color-off-white);">
       <div class="container">
+        <span class="section-label">Kontak</span>
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--color-dark); margin: 0.75rem 0 0.5rem;">Hubungi Saya</h2>
+        <p style="color: #5A5550; margin-bottom: 2.5rem; max-width: 520px;">Saya biasanya membalas dalam 1–2 hari kerja.</p>
 
-        <span class="section-label">Hubungi Kami</span>
-        <h2>Kontak</h2>
-
-        <div class="contact-card">
-          <p>Ada pertanyaan tentang layanan kami? Tulis saja — kami balas dalam Bahasa Indonesia.</p>
-
-          <a href="mailto:info@hebammenpraxis-digital.de" class="contact-email">
-            <i data-lucide="mail"></i>
-            info@hebammenpraxis-digital.de
-          </a>
-
-          <div class="contact-notice">
-            <strong>Waktu respons:</strong> Biasanya dalam 24–48 jam (Senin–Jumat).
+        <div style="max-width: 640px;">
+          <div id="kontakt-success-id" style="display:none; background: #EBF5F0; border-left: 4px solid var(--color-primary); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;">
+            <p style="color: var(--color-primary); font-weight: 700; margin: 0;">Pesan Anda berhasil dikirim. Saya akan segera menghubungi Anda!</p>
           </div>
-        </div>
 
+          <form id="form-id" onsubmit="submitForm(event, 'id')">
+            <div style="display: grid; gap: 1.25rem;">
+              <div>
+                <label style="display:block; font-weight:700; color:var(--color-dark); margin-bottom:0.4rem; font-size:0.9rem;">Nama Lengkap *</label>
+                <input type="text" name="name" required style="width:100%; padding:0.85rem 1rem; border:1.5px solid #D0CCC8; border-radius:8px; font-size:1rem; font-family:var(--font-body); box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="display:block; font-weight:700; color:var(--color-dark); margin-bottom:0.4rem; font-size:0.9rem;">Alamat Email *</label>
+                <input type="email" name="email" required style="width:100%; padding:0.85rem 1rem; border:1.5px solid #D0CCC8; border-radius:8px; font-size:1rem; font-family:var(--font-body); box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="display:block; font-weight:700; color:var(--color-dark); margin-bottom:0.4rem; font-size:0.9rem;">Nomor Telepon <span style="font-weight:400; color:#9B9189;">(opsional)</span></label>
+                <input type="tel" name="phone" style="width:100%; padding:0.85rem 1rem; border:1.5px solid #D0CCC8; border-radius:8px; font-size:1rem; font-family:var(--font-body); box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="display:block; font-weight:700; color:var(--color-dark); margin-bottom:0.4rem; font-size:0.9rem;">Topik *</label>
+                <select name="topic" required style="width:100%; padding:0.85rem 1rem; border:1.5px solid #D0CCC8; border-radius:8px; font-size:1rem; font-family:var(--font-body); box-sizing:border-box; background:white;">
+                  <option value="" disabled selected>Pilih topik...</option>
+                  <option value="Schwangerschaft">Kehamilan (Schwangerschaft)</option>
+                  <option value="Wochenbett">Nifas (Wochenbett)</option>
+                  <option value="Stillbegleitung">Menyusui (Stillbegleitung)</option>
+                  <option value="IGeL-Leistung">Layanan Berbayar (IGeL-Leistung)</option>
+                  <option value="Sonstiges">Lainnya</option>
+                </select>
+              </div>
+              <div>
+                <label style="display:block; font-weight:700; color:var(--color-dark); margin-bottom:0.4rem; font-size:0.9rem;">Pesan Anda *</label>
+                <textarea name="message" required rows="5" style="width:100%; padding:0.85rem 1rem; border:1.5px solid #D0CCC8; border-radius:8px; font-size:1rem; font-family:var(--font-body); box-sizing:border-box; resize:vertical;"></textarea>
+              </div>
+
+              <p style="font-size:0.85rem; color:#9B9189; margin:0;">⚠️ Mohon tidak mengirimkan dokumen medis atau data kesehatan sensitif melalui formulir ini.</p>
+
+              <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+                <input type="checkbox" id="dsgvo-id" name="dsgvo" required style="margin-top:3px; accent-color:var(--color-primary); width:16px; height:16px; flex-shrink:0;">
+                <label for="dsgvo-id" style="font-size:0.875rem; color:#5A5550; line-height:1.6;">Saya telah membaca <a href="/de/datenschutz.html" style="color:var(--color-primary);">Kebijakan Privasi</a> dan menyetujui bahwa data saya disimpan untuk keperluan penanganan pertanyaan saya. *</label>
+              </div>
+
+              <button type="submit" id="btn-id" class="btn-primary" style="width:fit-content;">Kirim Pesan</button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
