@@ -17,7 +17,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("en/postnatal.html");
   eleventyConfig.addPassthroughCopy("en/breastfeeding.html");
   eleventyConfig.addPassthroughCopy("src/assets/images");
-  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("de/igel.html");
+  eleventyConfig.addPassthroughCopy("en/igel.html");
+  eleventyConfig.addPassthroughCopy("id/igel.html");
+  
 
   eleventyConfig.addCollection("blog_de", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/de/blog/*.md");
